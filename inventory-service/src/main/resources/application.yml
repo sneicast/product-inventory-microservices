@@ -14,6 +14,14 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        default_schema: inventory_schema
         jdbc:
           time_zone: America/Bogota
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+product:
+  api:
+    base-url: http://localhost:8080
+
+server:
+  port: 8081
