@@ -1,0 +1,2 @@
+sonar.exclusions=**/shared/exceptions/**
+sonar.coverage.exclusions=**/shared/exceptions/**

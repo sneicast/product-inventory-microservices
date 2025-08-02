@@ -51,6 +51,7 @@ public class ProductControllerIntegrationTest {
 
         // Act
         String response = mockMvc.perform(post("/api/v1/products")
+                        .header("X-API-KEY", "test-api-key")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk())
@@ -75,6 +76,7 @@ public class ProductControllerIntegrationTest {
 
     private ProductDto getProductDtoById(int id) throws Exception {
         var mvcResult = mockMvc.perform(get("/api/v1/products/{id}", id)
+                        .header("X-API-KEY", "test-api-key")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -92,6 +94,7 @@ public class ProductControllerIntegrationTest {
                 .build();
 
         String response = mockMvc.perform(post("/api/v1/products")
+                        .header("X-API-KEY", "test-api-key")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(requestDto)))
                 .andExpect(status().isOk())
@@ -113,6 +116,7 @@ public class ProductControllerIntegrationTest {
         int productId = 999;
 
         mockMvc.perform(get("/api/v1/products/{id}", productId)
+                        .header("X-API-KEY", "test-api-key")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }
@@ -123,6 +127,7 @@ public class ProductControllerIntegrationTest {
         createProduct("Prod2", new BigDecimal("20.00"));
 
         var mvcResult = mockMvc.perform(get("/api/v1/products")
+                        .header("X-API-KEY", "test-api-key")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -140,6 +145,7 @@ public class ProductControllerIntegrationTest {
     @Test
     void getAllProducts_ShouldReturnEmptyList_WhenNoProductsExist() throws Exception {
         var mvcResult = mockMvc.perform(get("/api/v1/products")
+                        .header("X-API-KEY", "test-api-key")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
@@ -158,6 +164,7 @@ public class ProductControllerIntegrationTest {
                 .description("desc")
                 .build();
         mockMvc.perform(post("/api/v1/products")
+                        .header("X-API-KEY", "test-api-key")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(dto)))
                 .andExpect(status().isOk());
