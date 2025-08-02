@@ -8,6 +8,8 @@ import dev.scastillo.inventory.domain.service.ProductServicePort;
 import dev.scastillo.inventory.domain.service.PurchaseService;
 import dev.scastillo.inventory.domain.service.dto.PurchaseResponse;
 import dev.scastillo.inventory.infraestructure.rest.dto.ExternalProductDto;
+import dev.scastillo.inventory.shared.exception.ConflictException;
+import dev.scastillo.inventory.shared.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,7 @@ public class PurchaseServiceImpl implements PurchaseService {
         ProductStock productStock = getProductStockByProductId(productId);
 
         if (productStock.getQuantity() < quantity) {
-            throw new RuntimeException("Insufficient stock for product with id: " + productId);
+            throw new ConflictException("Stock insuficiente para el producto con id: " + productId);
         }
 
         Purchase purchase = Purchase.builder()
@@ -51,18 +53,18 @@ public class PurchaseServiceImpl implements PurchaseService {
                     var product = getProductById(purchase.getProductId());
                     return buildPurchaseResponse(purchase, product.getName());
                 })
-                .orElseThrow(() -> new RuntimeException("Purchase not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("No fue encontrada la compra con Id: " + id));
     }
 
 
     private ExternalProductDto getProductById(Integer productId) {
         return productServicePort.getProductById(productId)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+                .orElseThrow(() -> new NotFoundException("No fue encontrado el producto con id: " + productId));
     }
 
     private ProductStock getProductStockByProductId(Integer productId) {
         return productStockRepository.findByProductId(productId)
-                .orElseThrow(() -> new RuntimeException("Product stock not found with id: " + productId));
+                .orElseThrow(() -> new NotFoundException("No fue encontrado el Stock del producto con id: " + productId));
     }
 
     private PurchaseResponse buildPurchaseResponse(Purchase purchase, String productName) {

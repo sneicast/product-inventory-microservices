@@ -3,6 +3,7 @@ package dev.scastillo.product.unit.application.service;
 import dev.scastillo.product.application.service.ProductServiceImpl;
 import dev.scastillo.product.domain.model.Product;
 import dev.scastillo.product.domain.repository.ProductRepository;
+import dev.scastillo.product.shared.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,8 +12,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class ProductServiceImplTest {
@@ -85,15 +85,16 @@ public class ProductServiceImplTest {
 
     @Test
     void getProductById_ShouldThrowException_WhenNotFound() {
+        String expectedMessage = "No fue encontrado el producto con id: 2";
         // Arrange
         when(productRepository.findById(2)).thenReturn(Optional.empty());
 
         // Act & Assert
-        ResponseStatusException exception = assertThrows(
-                ResponseStatusException.class,
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> productService.getProductById(2)
         );
-        assertEquals("404 NOT_FOUND \"Product not found with id: 2\"", exception.getMessage());
+        assertTrue(exception.getMessage().contains(expectedMessage));
         verify(productRepository).findById(2);
     }
 
