@@ -1,0 +1,1109 @@
+{
+	"info": {
+		"_postman_id": "aab896f0-5bfd-4b04-90cc-a5256108cad7",
+		"name": "product-inventory-microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2026331",
+		"_collection_link": "https://sneicast.postman.co/workspace/CastilloLab~29f01f1c-c699-453f-b293-c62add967376/collection/2026331-aab896f0-5bfd-4b04-90cc-a5256108cad7?action=share&source=collection_link&creator=2026331"
+	},
+	"item": [
+		{
+			"name": "inventory-service",
+			"item": [
+				{
+					"name": "Get Stock Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId",
+							"host": [
+								"{{host-inventory-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"inventory",
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "{{productId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Stock Product not fount",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"inventory",
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:47:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Producto no encontrado id: 7\"\n    }\n}"
+						},
+						{
+							"name": "Get Stock Product success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"inventory",
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:48:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Manzana\",\n    \"price\": 2000,\n    \"description\": \"Nueva manzana del campo\",\n    \"stock\": 5\n}"
+						},
+						{
+							"name": "Get Stock Product sin configurar",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"inventory",
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:48:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"Banano\",\n    \"price\": 2000,\n    \"description\": \"Nueva Banano del campo\",\n    \"stock\": 0\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Stock Product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quantity\":5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId/stock",
+							"host": [
+								"{{host-inventory-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"inventory",
+								"products",
+								":productId",
+								"stock"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "{{productId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Stock Product success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"quantity\":5\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/inventory/products/:productId/stock",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"inventory",
+										"products",
+										":productId",
+										"stock"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:49:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"name\": \"Banano\",\n    \"price\": 2000,\n    \"description\": \"Nueva Banano del campo\",\n    \"stock\": 5\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "product-service",
+			"item": [
+				{
+					"name": "Create Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.environment.set(\"productId\", response.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Kiwi\",\n    \"price\":6000,\n    \"description\":\"Nueva Kiwi del campo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-product-service}}/api/v1/products",
+							"host": [
+								"{{host-product-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Kiwi\",\n    \"price\":6000,\n    \"description\":\"Nueva Kiwi del campo\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host-product-service}}/api/v1/products",
+									"host": [
+										"{{host-product-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:45:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 52,\n    \"name\": \"Kiwi\",\n    \"price\": 6000,\n    \"description\": \"Nueva Kiwi del campo\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.environment.set(\"productId\", response[0].id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host-product-service}}/api/v1/products",
+							"host": [
+								"{{host-product-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products Sussess",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-product-service}}/api/v1/products",
+									"host": [
+										"{{host-product-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:46:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Manzana\",\n        \"price\": 2000,\n        \"description\": \"Nueva manzana del campo\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Banano\",\n        \"price\": 2000,\n        \"description\": \"Nueva Banano del campo\"\n    },\n    {\n        \"id\": 52,\n        \"name\": \"Kiwi\",\n        \"price\": 6000,\n        \"description\": \"Nueva Kiwi del campo\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Detail Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host-product-service}}/api/v1/products/:productId",
+							"host": [
+								"{{host-product-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "{{productId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Detail Product Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-product-service}}/api/v1/products/:productId",
+									"host": [
+										"{{host-product-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:46:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Manzana\",\n    \"price\": 2000,\n    \"description\": \"Nueva manzana del campo\"\n}"
+						},
+						{
+							"name": "Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-product-service}}/api/v1/products/:productId",
+									"host": [
+										"{{host-product-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "{{productId}}"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:46:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"No fue encontrado el producto con id: 7\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "purchases",
+			"item": [
+				{
+					"name": "create purchase",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productId\":{{productId}},\n    \"quantity\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host-inventory-service}}/api/v1/purchases",
+							"host": [
+								"{{host-inventory-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"purchases"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Sin stock",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\":{{productId}},\n    \"quantity\":10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/purchases",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"purchases"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:50:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"Stock insuficiente para el producto con id: 1\"\n    }\n}"
+						},
+						{
+							"name": "create purchase success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\":{{productId}},\n    \"quantity\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/purchases",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"purchases"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:50:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"productId\": 1,\n    \"productName\": \"Manzana\",\n    \"quantity\": 1,\n    \"unitPrice\": 2000,\n    \"totalPrice\": 2000,\n    \"purchaseDate\": \"2025-08-02T17:50:34.294042-05:00\"\n}"
+						},
+						{
+							"name": "Failt not fount product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"productId\":{{productId}},\n    \"quantity\":1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/purchases",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"purchases"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:51:27 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"No fue encontrado el producto con id: 8\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Detail purchase",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-KEY",
+								"value": "{{api-key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host-inventory-service}}/api/v1/purchases/:purchaseId",
+							"host": [
+								"{{host-inventory-service}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"purchases",
+								":purchaseId"
+							],
+							"variable": [
+								{
+									"key": "purchaseId",
+									"value": "60"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Detail purchase success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/purchases/:purchaseId",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"purchases",
+										":purchaseId"
+									],
+									"variable": [
+										{
+											"key": "purchaseId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:51:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"productId\": 1,\n    \"productName\": \"Manzana\",\n    \"quantity\": 2,\n    \"unitPrice\": 2000,\n    \"totalPrice\": 4000,\n    \"purchaseDate\": \"2025-08-02T17:06:32.518422Z\"\n}"
+						},
+						{
+							"name": "Not Fount pucharse",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "{{api-key}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host-inventory-service}}/api/v1/purchases/:purchaseId",
+									"host": [
+										"{{host-inventory-service}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"purchases",
+										":purchaseId"
+									],
+									"variable": [
+										{
+											"key": "purchaseId",
+											"value": "60"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 02 Aug 2025 22:52:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"message\": \"No fue encontrada la compra con Id: 60\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "health inventory-ms",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host-inventory-service}}/actuator/health",
+					"host": [
+						"{{host-inventory-service}}"
+					],
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health product-ms",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-KEY",
+						"value": "{{api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host-product-service}}/actuator/health",
+					"host": [
+						"{{host-product-service}}"
+					],
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
