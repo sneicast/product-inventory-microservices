@@ -16,4 +16,5 @@ spring:
         format_sql: true
         jdbc:
           time_zone: America/Bogota
+        default_schema: product_schema
     database-platform: org.hibernate.dialect.PostgreSQLDialect
