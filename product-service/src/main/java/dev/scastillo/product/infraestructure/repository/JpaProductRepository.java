@@ -27,4 +27,11 @@ public class JpaProductRepository implements ProductRepository {
     public List<Product> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+
 }
