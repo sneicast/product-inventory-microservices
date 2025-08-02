@@ -6,6 +6,7 @@ import dev.scastillo.inventory.domain.repository.ProductStockRepository;
 import dev.scastillo.inventory.domain.service.ProductServicePort;
 import dev.scastillo.inventory.domain.service.dto.ProductResponse;
 import dev.scastillo.inventory.infraestructure.rest.dto.ExternalProductDto;
+import dev.scastillo.inventory.shared.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.server.ResponseStatusException;
@@ -78,15 +79,17 @@ public class ProductStockServiceImplTest {
     @Test
     void getDetailProductById_ShouldThrowNotFound_WhenProductDoesNotExist() {
         Integer productId = 99;
+        String expectedMessage = "Producto no encontrado id: " + productId;
         when(productServicePort.getProductById(productId)).thenReturn(Optional.empty());
 
-        ResponseStatusException exception = assertThrows(
-                ResponseStatusException.class,
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> productStockService.getDetailProductById(productId)
         );
 
-        assertEquals(404, exception.getStatusCode().value());
-        assertTrue(exception.getReason().contains("Product not found with id: " + productId));
+        System.out.println();
+
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
     @Test
@@ -142,15 +145,15 @@ public class ProductStockServiceImplTest {
     void updateProductStock_ShouldThrowNotFound_WhenProductDoesNotExist() {
         Integer productId = 99;
         Integer newStock = 5;
+        String expectedMessage = "Producto no encontrado id: " + productId;
         when(productServicePort.getProductById(productId)).thenReturn(Optional.empty());
 
-        ResponseStatusException exception = assertThrows(
-                ResponseStatusException.class,
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> productStockService.updateProductStock(productId, newStock)
         );
 
-        assertEquals(404, exception.getStatusCode().value());
-        assertTrue(exception.getReason().contains("Product not found with id: " + productId));
+        assertEquals(expectedMessage, exception.getMessage());
     }
 
 }
