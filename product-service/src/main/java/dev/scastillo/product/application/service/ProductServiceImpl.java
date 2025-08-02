@@ -3,6 +3,7 @@ package dev.scastillo.product.application.service;
 import dev.scastillo.product.domain.model.Product;
 import dev.scastillo.product.domain.repository.ProductRepository;
 import dev.scastillo.product.domain.service.ProductService;
+import dev.scastillo.product.shared.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product getProductById(Integer id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found with id: " + id));
+                .orElseThrow(() -> new NotFoundException("No fue encontrado el producto con id: " + id));
     }
 
     @Override

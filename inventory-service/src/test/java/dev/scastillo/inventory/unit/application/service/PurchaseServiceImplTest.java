@@ -8,6 +8,8 @@ import dev.scastillo.inventory.domain.repository.PurchaseRepository;
 import dev.scastillo.inventory.domain.service.ProductServicePort;
 import dev.scastillo.inventory.domain.service.dto.PurchaseResponse;
 import dev.scastillo.inventory.infraestructure.rest.dto.ExternalProductDto;
+import dev.scastillo.inventory.shared.exception.ConflictException;
+import dev.scastillo.inventory.shared.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -95,11 +97,12 @@ public class PurchaseServiceImplTest {
         when(productServicePort.getProductById(productId)).thenReturn(Optional.of(product));
         when(productStockRepository.findByProductId(productId)).thenReturn(Optional.of(productStock));
 
-        RuntimeException exception = assertThrows(
-                RuntimeException.class,
+        String expectedMessage = "Stock insuficiente para el producto con id: " + productId;
+        ConflictException exception = assertThrows(
+                ConflictException.class,
                 () -> purchaseService.createPurchase(productId, quantity)
         );
-        assertTrue(exception.getMessage().contains("Insufficient stock"));
+        assertTrue(exception.getMessage().contains(expectedMessage));
     }
 
     @Test
@@ -107,12 +110,12 @@ public class PurchaseServiceImplTest {
         Integer productId = 3;
         Integer quantity = 1;
         when(productServicePort.getProductById(productId)).thenReturn(Optional.empty());
-
-        RuntimeException exception = assertThrows(
-                RuntimeException.class,
+        String expectedMessage = "No fue encontrado el producto con id: " + productId;
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> purchaseService.createPurchase(productId, quantity)
         );
-        assertTrue(exception.getMessage().contains("Product not found"));
+        assertTrue(exception.getMessage().contains(expectedMessage));
     }
 
     @Test
@@ -128,11 +131,12 @@ public class PurchaseServiceImplTest {
         when(productServicePort.getProductById(productId)).thenReturn(Optional.of(product));
         when(productStockRepository.findByProductId(productId)).thenReturn(Optional.empty());
 
-        RuntimeException exception = assertThrows(
-                RuntimeException.class,
+        String expectedMessage = "No fue encontrado el Stock del producto con id: " + productId;
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> purchaseService.createPurchase(productId, quantity)
         );
-        assertTrue(exception.getMessage().contains("Product stock not found"));
+        assertTrue(exception.getMessage().contains(expectedMessage));
     }
 
     @Test
@@ -170,10 +174,11 @@ public class PurchaseServiceImplTest {
         Long purchaseId = 2L;
         when(purchaseRepository.findById(purchaseId)).thenReturn(Optional.empty());
 
-        RuntimeException exception = assertThrows(
-                RuntimeException.class,
+        String expectedMessage = "No fue encontrada la compra con Id: " + purchaseId;
+        NotFoundException exception = assertThrows(
+                NotFoundException.class,
                 () -> purchaseService.getPurchaseById(purchaseId)
         );
-        assertTrue(exception.getMessage().contains("Purchase not found with id: " + purchaseId));
+        assertTrue(exception.getMessage().contains(expectedMessage));
     }
 }
