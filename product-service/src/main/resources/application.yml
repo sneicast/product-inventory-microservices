@@ -19,5 +19,8 @@ spring:
         default_schema: product_schema
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+security:
+  api-key: ${API_KEY}
+
 server:
   port: 8080
