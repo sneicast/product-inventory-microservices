@@ -1,6 +1,5 @@
 package dev.scastillo.product.config;
 
-import dev.scastillo.product.shared.exception.UnauthorizedException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
