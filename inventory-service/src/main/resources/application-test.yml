@@ -14,3 +14,10 @@ spring:
         default_schema: public
         jdbc:
           time_zone: America/Bogota
+product:
+  api:
+    base-url: http://fake-url
+    api-key: test-api-key
+
+security:
+  api-key: test-api-key
